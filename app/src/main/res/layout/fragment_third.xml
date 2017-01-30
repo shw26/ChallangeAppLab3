@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="group1.tcss450.uw.edu.challangeapp.ThirdFragment">
+
+    <EditText
+        android:id="@+id/usernamethird"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:maxLines="1"/>
+    <EditText
+        android:id="@+id/passwordthird"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:maxLines="1"/>
+    <EditText
+        android:id="@+id/repeatpasswordthird"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/repassword"
+        android:inputType="textPassword"
+        android:maxLines="1"/>
+    <Button
+        android:id="@+id/registerSubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"/>
+
+</LinearLayout>
