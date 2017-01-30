@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -29,7 +30,8 @@ public class FourthFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_fourth, container, false);
-
+        TextView textView = (TextView) v.findViewById(R.id.usernamefourth);
+        textView = (TextView) v.findViewById(R.id.passwordfourth);
         return v;
     }
 
