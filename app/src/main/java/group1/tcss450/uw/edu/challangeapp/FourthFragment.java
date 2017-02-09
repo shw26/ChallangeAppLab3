@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import android.widget.TextView;
  * to handle interaction events.
  */
 public class FourthFragment extends Fragment {
-
+    public static final String KEY = "key";
     private OnFragmentInteractionListener mListener;
 
     public FourthFragment() {
@@ -53,6 +54,14 @@ public class FourthFragment extends Fragment {
         mListener = null;
     }
 
+
+    @Override
+    public  void onStart(){
+        super.onStart();
+        if (getArguments() != null) {
+            updateContent(getArguments().getStringArray(KEY));
+        }
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -66,5 +75,14 @@ public class FourthFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Fragment fragment);
+    }
+    public  void updateContent(String[] packedStr){
+        TextView usernameTextView = (TextView) getActivity().findViewById(R.id.usernamefourth);
+        TextView passwordTextView = (TextView) getActivity().findViewById(R.id.passwordfourth);
+
+
+        usernameTextView.setText(packedStr[0]);
+        passwordTextView.setText(packedStr[1]);
+
     }
 }

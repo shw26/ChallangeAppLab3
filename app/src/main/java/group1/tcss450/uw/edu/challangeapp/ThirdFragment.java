@@ -72,7 +72,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Fragment fragment);
+        void onFragmentInteraction(Fragment fragment, String username, String password);
     }
 
     /**
@@ -116,9 +116,9 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
             // form field with an error.
             focusView.requestFocus();
         }else {
-            Fragment fragment = new FourthFragment();
-            mListener.onFragmentInteraction(fragment);
 
+            Fragment fragment = new FourthFragment();
+            mListener.onFragmentInteraction(fragment, username, password);
         }
     }
 }

@@ -128,7 +128,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Fragment fragment);
+        void onFragmentInteraction(Fragment fragment, String username, String password);
     }
 
     protected void attemptLogin(View view){
@@ -225,10 +225,10 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
                 Toast.makeText(getActivity(),"login success",Toast.LENGTH_SHORT).show();
                 //mSignInBtn.setEnabled(true);
                 Fragment fragment = new FourthFragment();
-                mListener.onFragmentInteraction(fragment);
+                mListener.onFragmentInteraction(fragment, username, password);
+
             }
 
         }
-
     }
 }
