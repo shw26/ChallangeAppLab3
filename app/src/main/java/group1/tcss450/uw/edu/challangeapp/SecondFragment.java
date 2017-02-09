@@ -38,8 +38,10 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String mUsername;
+    private String mPassword;
+
+
 
     private static final String PARTIAL_URL
             = "http://cssgate.insttech.washington.edu/" +
@@ -73,13 +75,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-
-
     }
 
     @Override
@@ -158,6 +154,8 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
             // form field with an error.
             focusView.requestFocus();
         }else {
+            mPassword=password;
+            mUsername=username;
             AsyncTask<String, Void, String> task = null;
             //mSignInBtn.setEnabled(false);
             task = new PostWebServiceTask();
@@ -225,7 +223,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
                 Toast.makeText(getActivity(),"login success",Toast.LENGTH_SHORT).show();
                 //mSignInBtn.setEnabled(true);
                 Fragment fragment = new FourthFragment();
-                mListener.onFragmentInteraction(fragment, username, password);
+                mListener.onFragmentInteraction(fragment, mUsername, mPassword);
 
             }
 
