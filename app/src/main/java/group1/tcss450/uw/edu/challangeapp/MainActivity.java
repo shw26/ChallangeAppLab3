@@ -1,5 +1,6 @@
 package group1.tcss450.uw.edu.challangeapp;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -7,11 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.json.JSONObject;
+
+import group1.tcss450.uw.edu.challangeapp.model.Setlist;
+
 public class MainActivity extends AppCompatActivity
         implements FirstFragment.OnFragmentInteractionListener,
                    SecondFragment.OnFragmentInteractionListener,
                    ThirdFragment.OnFragmentInteractionListener,
-                    FourthFragment.OnFragmentInteractionListener{
+                    FourthFragment.OnFragmentInteractionListener,
+                    GetSetlistFragement.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +56,37 @@ public class MainActivity extends AppCompatActivity
         fourthFragment.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragmentContainer, fourthFragment)
+//                .replace(R.id.fragmentContainer, fourthFragment)
+                .replace(R.id.fragmentContainer, fragment)
                 .addToBackStack(null);
 
         // Commit the transaction
         transaction.commit();
+    }
+
+
+    @Override
+    public void onFragmentInteraction(Setlist[] setlist) {
+        SetlistFragment setlistFragment;
+
+        setlistFragment = (SetlistFragment) getSupportFragmentManager().
+                findFragmentById(R.id.setlist);
+        if(setlistFragment != null) {
+            setlistFragment.updateContent(setlist);
+
+        } else {
+
+            setlistFragment = new SetlistFragment();
+            Bundle args = new Bundle();
+            args.putSerializable(setlistFragment.KEY, setlist);
+            setlistFragment.setArguments(args);
+            FragmentTransaction transaction = getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, setlistFragment)
+                    .addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+        }
     }
 }

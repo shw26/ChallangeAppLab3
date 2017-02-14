@@ -222,7 +222,9 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
                 //if the username and password matches a data in the db.
                 Toast.makeText(getActivity(),"login success",Toast.LENGTH_SHORT).show();
                 //mSignInBtn.setEnabled(true);
-                Fragment fragment = new FourthFragment();
+//switch to getsetlistfragement.
+//                Fragment fragment = new FourthFragment();
+                Fragment fragment = new GetSetlistFragement();
                 mListener.onFragmentInteraction(fragment, mUsername, mPassword);
 
             }
