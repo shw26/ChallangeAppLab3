@@ -40,6 +40,11 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
     private static final String PARTIAL_URL
             = "http://cssgate.insttech.washington.edu/~cfb3/TCSS450A-W17/phish/setlist/";
 
+    private static final String[] IDS = new String[] {
+            "1479253444", "1252691618", "1252633496", "1252343167", "1250887835", "1252877083",
+            "1252956590", "1252989413", "1479253406", "1475149035"};
+
+    AutoCompleteTextView act;
     public GetSetlistFragement() {
         // Required empty public constructor
     }
@@ -57,8 +62,10 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
         b = (Button) v.findViewById(R.id.go);
         b.setOnClickListener(this);
 
-        AutoCompleteTextView act = (AutoCompleteTextView) v.findViewById(R.id.actv);
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), )
+        act = (AutoCompleteTextView) v.findViewById(R.id.actv);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, IDS);
+
+        act.setAdapter(adapter);
 
 
         return v;
@@ -84,19 +91,25 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         AsyncTask<String, Void, String> task = null;
+        String option = new String();
         if (mListener != null){
             switch (v.getId()) {
                 case R.id.random:
-                    task = new RandomWebServiceTask();
+                    task = new WebServiceTask();
+                    option = "random.php";
                     break;
                 case R.id.tenRecent:
-                    task = new tenRecentWebServiceTask();
+                    task = new WebServiceTask();
+                    option = "recent.php";
                     break;
                 case R.id.go:
+                    String actText = act.getText().toString();
+                    option = "getShow.php?show_id=" + actText;
+                    task = new WebServiceTask();
                     break;
             }
         }
-        task.execute(PARTIAL_URL);
+        task.execute(PARTIAL_URL, option);
     }
 
     /**
@@ -114,7 +127,7 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
         void onFragmentInteraction(Setlist[] setlist);
     }
 
-    private class RandomWebServiceTask extends AsyncTask<String, Void, String> {
+    private class WebServiceTask extends AsyncTask<String, Void, String> {
         private final String SERVICE = "random.php";
 
         @Override
@@ -122,8 +135,9 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
             String response = "";
             HttpURLConnection urlConnection = null;
             String url = strings[0];
+            String option = strings[1];
             try {
-                URL urlObject = new URL(url + SERVICE);
+                URL urlObject = new URL(url + option);
                 urlConnection = (HttpURLConnection) urlObject.openConnection();
                 InputStream content = urlConnection.getInputStream();
                 BufferedReader buffer = new BufferedReader(new InputStreamReader(content));

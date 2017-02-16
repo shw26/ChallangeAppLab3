@@ -35,6 +35,28 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Fragment fragment) {
+
+
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(int fragmentno) {
+        Fragment fragment;
+
+        if(fragmentno == 2){
+            fragment = new SecondFragment();
+        }else {
+            fragment = new ThirdFragment();
+        }
+        Log.d("main", "here");
+
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, fragment)

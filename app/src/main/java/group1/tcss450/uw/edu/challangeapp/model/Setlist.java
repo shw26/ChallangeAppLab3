@@ -33,7 +33,7 @@ public class Setlist implements Serializable{
         create(oneData);
     }
 
-    public void create(JSONObject oneData) throws JSONException {
+    private void create(JSONObject oneData) throws JSONException {
         int error_code = 0; //jsonObject.getInt("error_code");
         if (error_code != 0){
 //            String error_message = jsonObject.getString("error_message");

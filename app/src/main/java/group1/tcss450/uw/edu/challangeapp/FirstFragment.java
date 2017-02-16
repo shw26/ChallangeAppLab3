@@ -61,16 +61,21 @@ public class FirstFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         Fragment fragment;
+        int fragmentno;
 
         if (mListener != null){
             switch(v.getId()){
                 case R.id.loginButton:
-                    fragment = new SecondFragment();
-                    mListener.onFragmentInteraction(fragment);
+//                    fragment = new SecondFragment();
+//                    mListener.onFragmentInteraction(fragment);
+                    fragmentno = 2;
+                    mListener.onFragmentInteraction(fragmentno);
                     break;
                 case R.id.registerButton:
-                    fragment = new ThirdFragment();
-                    mListener.onFragmentInteraction(fragment);
+//                    fragment = new ThirdFragment();
+//                    mListener.onFragmentInteraction(fragment);
+                    fragmentno = 3;
+                    mListener.onFragmentInteraction(fragmentno);
                     break;
             }
         }
@@ -88,6 +93,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener{
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Fragment fragment);
+        //void onFragmentInteraction(Fragment fragment);
+        void onFragmentInteraction(int fragmentno);
     }
 }
