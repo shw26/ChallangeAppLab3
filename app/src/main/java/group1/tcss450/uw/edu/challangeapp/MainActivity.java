@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity
                    SecondFragment.OnFragmentInteractionListener,
                    ThirdFragment.OnFragmentInteractionListener,
                     FourthFragment.OnFragmentInteractionListener,
-                    GetSetlistFragement.OnFragmentInteractionListener{
+                    GetSetlistFragement.OnFragmentInteractionListener,
+                    ListFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,25 +88,48 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+//    @Override
+//    public void onFragmentInteraction(Setlist[] setlist) {
+//        SetlistFragment setlistFragment;
+//        setlistFragment = (SetlistFragment) getSupportFragmentManager().
+//                findFragmentById(R.id.setlist);
+//
+//        if(setlistFragment != null) {
+//            setlistFragment.updateContent(setlist);
+//
+//        } else {
+//
+//            setlistFragment = new SetlistFragment();
+//            Bundle args = new Bundle();
+//            args.putSerializable(setlistFragment.KEY, setlist);
+//            setlistFragment.setArguments(args);
+//            FragmentTransaction transaction = getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragmentContainer, setlistFragment)
+//                    .addToBackStack(null);
+//
+//            // Commit the transaction
+//            transaction.commit();
+//        }
+//    }
     @Override
     public void onFragmentInteraction(Setlist[] setlist) {
-        SetlistFragment setlistFragment;
-        Log.wtf("Holy", "this shit");
-        setlistFragment = (SetlistFragment) getSupportFragmentManager().
-                findFragmentById(R.id.setlist);
-        if(setlistFragment != null) {
-            setlistFragment.updateContent(setlist);
-            Log.wtf("fuck", "this shit");
+        ListFragment listFragment;
+        listFragment = (ListFragment) getSupportFragmentManager().
+                findFragmentById(R.id.list);
+
+        if(listFragment != null) {
+            listFragment.updateContent(setlist);
 
         } else {
 
-            setlistFragment = new SetlistFragment();
+            listFragment = new ListFragment();
             Bundle args = new Bundle();
-            args.putSerializable(setlistFragment.KEY, setlist);
-            setlistFragment.setArguments(args);
+            args.putSerializable("key", setlist);
+            listFragment.setArguments(args);
             FragmentTransaction transaction = getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragmentContainer, setlistFragment)
+                    .replace(R.id.fragmentContainer, listFragment)
                     .addToBackStack(null);
 
             // Commit the transaction

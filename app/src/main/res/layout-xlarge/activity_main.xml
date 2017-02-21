@@ -10,8 +10,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1" />
     <fragment
-        android:id="@+id/setlist"
-        android:name="group1.tcss450.uw.edu.challangeapp.SetlistFragment"
+        android:id="@+id/list"
+        android:name="group1.tcss450.uw.edu.challangeapp.ListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2" />
