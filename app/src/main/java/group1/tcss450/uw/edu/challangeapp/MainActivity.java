@@ -90,11 +90,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Setlist[] setlist) {
         SetlistFragment setlistFragment;
-
+        Log.wtf("Holy", "this shit");
         setlistFragment = (SetlistFragment) getSupportFragmentManager().
                 findFragmentById(R.id.setlist);
         if(setlistFragment != null) {
             setlistFragment.updateContent(setlist);
+            Log.wtf("fuck", "this shit");
 
         } else {
 

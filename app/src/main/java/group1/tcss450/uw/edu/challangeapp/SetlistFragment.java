@@ -51,9 +51,9 @@ public class SetlistFragment extends Fragment {
     public void updateContent(Setlist[] setlist){
         int n = setlist.length;
         Log.d("setlist setlistf", setlist[0].getArtist());
-        final TextView[] tvArr = new TextView[n*15];
+        TextView[] tvArr = new TextView[n*15];
         //final LinearLayout myLL = (LinearLayout) getActivity().findViewById(R.id.setlist);
-
+        myLL.removeAllViews();
         for(int i = 0; i < n; i++){
             final TextView tv1 = new TextView(getActivity());
             tv1.setText(String.valueOf(setlist[i].getShowid()));
